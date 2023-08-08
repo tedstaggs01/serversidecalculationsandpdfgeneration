@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tedstaggs01/serversidecalculationsandpdfgeneration#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
     "handlebars": "^4.7.8",
     "nodemon": "^3.0.1",
     "puppeteer": "^21.0.1"

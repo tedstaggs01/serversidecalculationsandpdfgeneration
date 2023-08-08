@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>{{title}}</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="/assets/css/quick-website.css" id="stylesheet">
+    <style>
+        #logo_pilotflow {
+            width: auto;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="" id="header-main">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg navbar-light" id="navbar-main">
+            <div class="container">
+                <!-- Brand -->
+                <a class="navbar-brand" href="/">
+                    <img src="/img/pilotflow_logo.svg" alt="" id="logo_pilotflow">
+                </a>
+                <!-- Toggler -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse navbar-collapse-overlay" id="navbar-main-collapse">
+                    <!-- Toggler -->
+                    <div class="position-relative">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <!-- Main navigation -->
+                    <ul class="navbar-nav ml-lg-auto">
+                        <!-- Overview -->
+                        <li class="nav-item nav-item-spaced d-none d-lg-block">
+                            <a class="nav-link" href="/">
+                                Overview
+                            </a>
+                        </li>
+                        <!-- Start menu -->
+                        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Start</a>
+                            <div class="dropdown-menu dropdown-menu-md p-0">
+                                <ul class="list-group list-group-flush px-lg-4">
+                                    <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                                        <a href="/cpl" class="list-group-item list-group-item-action dropdown-toggle" role="button">
+                                            <div class="d-flex">
+                                                <!-- SVG icon -->
+                                                <figure style="width: 20px;">
+                                                    <img alt="Image placeholder" src="../../assets/img/svg/icons/Deliver_by_Air.svg" class="svg-inject img-fluid" style="height: 20px;">
+                                                </figure>
+                                                <!-- Media body -->
+                                                <div class="ml-3">
+                                                    <h6 class="heading mb-0">CPL</h6>
+                                                    <p class="mb-0">Skydive Luxembourg</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                                        <a href="/aerosport" class="list-group-item list-group-item-action dropdown-toggle" role="button">
+                                            <div class="d-flex">
+                                                <!-- SVG icon -->
+                                                <figure style="width: 20px;">
+                                                    <img alt="Image placeholder" src="../../assets/img/svg/icons/Deliver_by_Air.svg" class="svg-inject img-fluid" style="height: 20px;">
+                                                </figure>
+                                                <!-- Media body -->
+                                                <div class="ml-3">
+                                                    <h6 class="heading mb-0">Aerosport</h6>
+                                                    <p class="mb-0">Aviation Club</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                                        <a href="/aviasport" class="list-group-item list-group-item-action dropdown-toggle" role="button">
+                                            <div class="d-flex">
+                                                <!-- SVG icon -->
+                                                <figure style="width: 20px;">
+                                                    <img alt="Image placeholder" src="../../assets/img/svg/icons/Deliver_by_Air.svg" class="svg-inject img-fluid" style="height: 20px;">
+                                                </figure>
+                                                <!-- Media body -->
+                                                <div class="ml-3">
+                                                    <h6 class="heading mb-0">Aviasport</h6>
+                                                    <p class="mb-0">Aviation Club</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                                        <a href="/private" class="list-group-item list-group-item-action dropdown-toggle" role="button">
+                                            <div class="d-flex">
+                                                <!-- SVG icon -->
+                                                <figure style="width: 20px;">
+                                                    <img alt="Image placeholder" src="../../assets/img/svg/icons/Deliver_by_Air.svg" class="svg-inject img-fluid" style="height: 20px;">
+                                                </figure>
+                                                <!-- Media body -->
+                                                <div class="ml-3">
+                                                    <h6 class="heading mb-0">Private</h6>
+                                                    <p class="mb-0">Get your plane listed!</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-item-spaced d-none d-lg-block">
+                            <a class="nav-link" href="/documentation">
+                                Documentation
+                            </a>
+                        </li>
+                        <li class="nav-item nav-item-spaced d-none d-lg-block">
+                            <a class="nav-link" href="/contact">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Right navigation -->
+                    <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                        <li class="nav-item">
+                            <a href="/select" class="btn btn-sm btn-primary btn-icon ml-3" target="_blank">
+                                <span class="btn-inner--icon"><i data-feather="shopping-bag"></i></span>
+                                <span class="btn-inner--text">Get Started</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Mobile button -->
+                    <div class="d-lg-none px-4 text-center">
+                        <a href="/select" class="btn btn-block btn-sm btn-primary" target="_blank">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Omnisearch -->
+    <div id="omnisearch" class="omnisearch">
+        <div class="container">
+            <div class="omnisearch-container">
+                <!-- Search form -->
+                <form class="omnisearch-form">
+                    <div class="form-group">
+                        <div class="input-group input-group-merge input-group-flush">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i data-feather="search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Type and hit enter ...">
+                        </div>
+                    </div>
+                </form>
+                <div class="omnisearch-suggestions">
+                    <h6 class="heading">Search Suggestions</h6>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a class="list-link" href="#">
+                                        <i data-feather="clock"></i>
+                                        <span>macbook pro</span> in Laptops
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-link" href="#">
+                                        <i data-feather="clock"></i>
+                                        <span>iphone 8</span> in Smartphones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-link" href="#">
+                                        <i data-feather="clock"></i>
+                                        <span>macbook pro</span> in Laptops
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-link" href="#">
+                                        <i data-feather="clock"></i>
+                                        <span>beats pro solo 3</span> in Headphones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-link" href="#">
+                                        <i data-feather="clock"></i>
+                                        <span>smasung galaxy 10</span> in Phones
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--NAVIGATION -->
+
+    {{{ body }}} 
+
+    <!--FOOTER-->
+
+    <footer class="position-relative" id="footer-main">
+        <div class="footer pt-lg-7 footer-dark bg-dark">
+            <!-- SVG shape -->
+            <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="">
+                    <polygon points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+            <!-- Footer -->
+            <div class="container pt-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+                                <h3 class="text-secondary mb-2">Brilliant solutions</h3>
+                                <p class="lead mb-0 text-white opacity-8">
+                                    Not convinced? Check-out our in depth documentation, all data backed-up! 
+                                </p>
+                            </div>
+                            <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
+                                <a href="/documentation" class="btn btn-white btn-icon my-2" target="_blank">
+                                    <span class="btn-inner--icon">
+                                        <i data-feather="book" class="text-primary"></i>
+                                    </span>
+                                    <span class="btn-inner--text"><i class="fa fa-book"></i> Documentation</span>
+                                </a>
+                                <a href="/select" class="btn btn-primary my-2 ml-0 ml-sm-3" target="_blank">
+                                    Let's Get Started
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider divider-fade divider-dark my-5">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">Connect with us!</h6>
+                        <ul class="nav mt-4">
+                            <li class="nav-item">
+                                <a class="nav-link pl-0" href="https://" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/tedstaggs01/pilotflows" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.instagram.com/pilotflows" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.facebook.com/" target="_blank">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">Application</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="/aerosport">Aerosport</a></li>
+                            <li><a href="/aviasport">Aviasport</a></li>
+                            <li><a href="/cpl">CPL</a></li>
+                            <li><a href="/private">Private</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">Project</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="/">Main</a></li>
+                            <li><a href="/documentation">Documentation</a></li>
+                            <li><a href="mailto:ted@staggs.lu">Contact</a></li>
+                            <li><a href="/legal">Legals</a></li>
+                        </ul>
+                    </div>
+                    <!-- Reserve
+                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">Company</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Help center</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+                <hr class="divider divider-fade divider-dark my-4">
+                <div class="text-center">
+                    <div class="font-weight-bold copyright">
+                     &copy; <span id="currentYear"></span><a href="/" class="font-weight-bold" target="_blank">Pilotflows</a>. All rights reserved - A <a href="https://www.linkedin.com/in/ted-staggs-302224102/">Ted Staggs </a>Production
+                    </div>
+                </div>
+                
+                    <!--Legals
+                    <div class="col-md-6">
+                        <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Terms
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Privacy
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Cookies
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/getyear.js"></script>
+    <!-- Core JS  -->
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="/assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- <script src="../../assets/libs/jquery.scrollbar/jquery.scrollbar.min.js"></script> -->
+    <!-- <script src="../../assets/libs/simplebar/dist/simplebar.min.js"></script> -->
+    <!-- Optional JS -->
+    <script src="/assets/libs/in-view/dist/in-view.min.js"></script>
+    <script src="/assets/libs/sticky-kit/dist/sticky-kit.min.js"></script>
+    <script src="/assets/libs/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <!-- Page JS -->
+    <script src="/assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <!-- Quick JS -->
+    <script src="/assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <!--Update Year-->
+</body>
+</html>
