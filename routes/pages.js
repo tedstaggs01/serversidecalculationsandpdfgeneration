@@ -52,10 +52,14 @@ router.post('/result', (req, res) => {
     const lmlbs = lm * 2.205; 
     const lmmo = tommo - tripmo; 
     const lmcg = lmmo / lm; 
-
-    console.log(selectedAirplane);
-    console.log(bem);
-    res.render('result', { totalWeight });
+    const remUsefulL = airplaneData.maxramp - ramp; 
+    const remUsefulLlbs = remUsefulL * 2.205;
+    res.render('result', { 
+        crew,
+        pax,
+        bag, 
+        zfm
+    });
 });
 
 router.get('/result', (req, res) => {

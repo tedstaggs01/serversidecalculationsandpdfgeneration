@@ -1,2 +1,92 @@
-<h1>THis is a result</h1>
-<h1>{{}}</h1>
+<head>
+  <link rel="stylesheet" href="/css/form.css">
+</head>
+    <div class="card mx-2" id="content">
+      <div class="alert alert-success" role="alert">
+          <strong>HEADS UP!</strong> This is a TESTING PHASE — Please report any difficulties or abnormals: <a href="tel:+352621232202" class="alert-link">+352 621 23 22 02</a>
+      </div>
+      <div class="mb-form">
+        <form action="/result" method="post">
+          <h6>Select desired airplane profile:</h6>
+          <select class="form-select" name="airplaneoption">
+            <option value="lxaib">LX-AIB [P28A]</option>
+            <option value="lxaif">LX-AIF [P28A]</option>
+            <option value="lxaig">LX-AIG [P28A]</option>
+            <option value="lxaiw">LX-AIW [P28A]</option>
+            <option value="lxaic">LX-AIC [C172L]</option>
+            <option value="lxaid">LX-AID[C172N]</option>
+            <option value="lxaiz">LX-AIZ [C172N]</option>
+            <option value="lxaie">LX-AIE [C172S]</option>
+            <option value="lxaio">LX-AIO [C172S]</option>
+            <option value="lxaix">LX-AIX [C182Q]</option>
+            <option value="lxaim">LX-AIM [PA-44]</option>
+          </select>
+          <br>
+          <br>
+          <div class="text-center">
+            <h4>MASS AND BALANCE: <span id="test"></span></h4>
+            <span class="badge badge-soft-success">Read the <a href="/aerosportdoc">Documentation</a> before proceeding!</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="crew"><h6> <span class="badge badge-soft-primary">Crew</span> mass (kg): {{crew}}</h6></label>
+          </div>
+          <div class="form-group">
+            <label for="pax"><h6> <span class="badge badge-soft-primary">Pax</span> mass (kg): {{pax}}</h6></label>
+          </div>
+          <div class="form-group">
+            <label for="baggage"><h6> <span class="badge badge-soft-primary">Baggage</span> mass (kg): {{bag}}</h6></label>
+          </div>
+          <h5><span id="zfm">Zero Fuel Mass: {{zfm}} kg | {{zfmlbs}} lbs</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="fuel"><h6>Enter <span class="badge badge-soft-primary">Fuel</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="fuel" placeholder="Fuel station" name="fuel">
+          </div>
+          <h5><span id="ramp">Ramp Mass</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="taxi"><h6>Enter <span class="badge badge-soft-primary">Taxi</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="taxi" placeholder="Fuel station" name="taxi">
+          </div>
+          <h5><span id="tom">Take-off Mass</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="trip"><h6>Enter <span class="badge badge-soft-primary">Trip</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="trip" placeholder="Fuel station" name="trip">
+          </div>
+          <h5><span id="lm">Landing Mass</span></h5>
+          <hr>
+          <div class="text-center">
+            <h6><span class="badge badge-success"><span id="remUsefukL">Remaining Useful Load</span></h6>
+          </div>
+          <br>
+          <br>
+          <div class="buttons">
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit" id="calc">Calculate</button>
+              <br>
+              <br>
+              <div class="terms-calc">
+                <p>Be aware, PILOT FLOW is not liable for any information provided! This is for entertainment purposes only! Recalculation is strongly advised! Review our: <a href="/legal">Terms and Conditions</a>!</p>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card mx-2">
+          <div class="canvas">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <br>
+        <div class="text-center">
+          <button id="generatePDFButton">Generate PDF</button>
+        </div>
+        <br>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/aerosport_data.js"></script>
+  <!--<script src="/js/aerosport_calc.js"></script>-->
+    <script src="/js/pdf-gen-aerosport.js"></script>
