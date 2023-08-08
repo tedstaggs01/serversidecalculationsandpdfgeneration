@@ -6,76 +6,76 @@
           <strong>HEADS UP!</strong> This is a TESTING PHASE — Please report any difficulties or abnormals: <a href="tel:+352621232202" class="alert-link">+352 621 23 22 02</a>
       </div>
       <div class="mb-form">
-        <h6>Select desired airplane profile:</h6>
-        <select class="form-select" name="airplanes" id="list">
-          <option value="lxaib">LX-AIB [P28A]</option>
-          <option value="lxaif">LX-AIF [P28A]</option>
-          <option value="lxaig">LX-AIG [P28A]</option>
-          <option value="lxaiw">LX-AIW [P28A]</option>
-          <option value="lxaic">LX-AIC [C172L]</option>
-          <option value="lxaid">LX-AID[C172N]</option>
-          <option value="lxaiz">LX-AIZ [C172N]</option>
-          <option value="lxaie">LX-AIE [C172S]</option>
-          <option value="lxaio">LX-AIO [C172S]</option>
-          <option value="lxaix">LX-AIX [C182Q]</option>
-          <option value="lxaim">LX-AIM [PA-44]</option>
-        </select>
-        <br>
-        <br>
-        <div class="text-center">
-          <h4>MASS AND BALANCE: <span id="test"></span></h4>
-          <span class="badge badge-soft-success">Read the <a href="/aerosportdoc">Documentation</a> before proceeding!</span>
-        </div>
-        <hr>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Crew</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="crew" placeholder="Crew station">
-        </div>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Pax</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="pax" placeholder="Pax station">
-        </div>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Baggage</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="baggage" placeholder="Baggage station">
-        </div>
-        <h5><span id="zfm">Zero Fuel Mass</span></h5>
-        <hr>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Fuel</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="fuel" placeholder="Fuel station">
-        </div>
-        <h5><span id="ramp">Ramp Mass</span></h5>
-        <hr>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Taxi</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="taxi" placeholder="Fuel station">
-        </div>
-        <h5><span id="tom">Take-off Mass</span></h5>
-        <hr>
-        <div class="form-group">
-          <label><h6>Enter <span class="badge badge-soft-primary">Trip</span> mass (kg):</h6></label>
-          <input type="number" class="form-control" id="trip" placeholder="Fuel station">
-        </div>
-        <h5><span id="lm">Landing Mass</span></h5>
-        <hr>
-        <div class="text-center">
-          <h6><span class="badge badge-success"><span id="remUsefukL">Remaining Useful Load</span></h6>
-        </div>
-        <br>
-        <br>
-        <div class="buttons">
+        <form action="/result" method="post">
+          <h6>Select desired airplane profile:</h6>
+          <select class="form-select" name="airplaneoption">
+            <option value="lxaib">LX-AIB [P28A]</option>
+            <option value="lxaif">LX-AIF [P28A]</option>
+            <option value="lxaig">LX-AIG [P28A]</option>
+            <option value="lxaiw">LX-AIW [P28A]</option>
+            <option value="lxaic">LX-AIC [C172L]</option>
+            <option value="lxaid">LX-AID[C172N]</option>
+            <option value="lxaiz">LX-AIZ [C172N]</option>
+            <option value="lxaie">LX-AIE [C172S]</option>
+            <option value="lxaio">LX-AIO [C172S]</option>
+            <option value="lxaix">LX-AIX [C182Q]</option>
+            <option value="lxaim">LX-AIM [PA-44]</option>
+          </select>
+          <br>
+          <br>
           <div class="text-center">
-            <form method="post" action="/increment">
-              <button class="btn btn-primary" type="submit" id="calc">Calculate</button>
-            </form>
-            <br>
-            <br>
-            <div class="terms-calc">
-              <p>Be aware, PILOT FLOW is not liable for any information provided! This is for entertainment purposes only! Recalculation is strongly advised! Review our: <a href="/legal">Terms and Conditions</a>!</p>
+            <h4>MASS AND BALANCE: <span id="test"></span></h4>
+            <span class="badge badge-soft-success">Read the <a href="/aerosportdoc">Documentation</a> before proceeding!</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="crew"><h6>Enter <span class="badge badge-soft-primary">Crew</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="crew" placeholder="Crew station" name="crew">
+          </div>
+          <div class="form-group">
+            <label for="pax"><h6>Enter <span class="badge badge-soft-primary">Pax</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="pax" placeholder="Pax station" name="pax">
+          </div>
+          <div class="form-group">
+            <label for="baggage"><h6>Enter <span class="badge badge-soft-primary">Baggage</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="baggage" placeholder="Baggage station" name="baggage">
+          </div>
+          <h5><span id="zfm">Zero Fuel Mass</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="fuel"><h6>Enter <span class="badge badge-soft-primary">Fuel</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="fuel" placeholder="Fuel station" name="fuel">
+          </div>
+          <h5><span id="ramp">Ramp Mass</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="taxi"><h6>Enter <span class="badge badge-soft-primary">Taxi</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="taxi" placeholder="Fuel station" name="taxi">
+          </div>
+          <h5><span id="tom">Take-off Mass</span></h5>
+          <hr>
+          <div class="form-group">
+            <label for="trip"><h6>Enter <span class="badge badge-soft-primary">Trip</span> mass (kg):</h6></label>
+            <input type="number" class="form-control" id="trip" placeholder="Fuel station" name="trip">
+          </div>
+          <h5><span id="lm">Landing Mass</span></h5>
+          <hr>
+          <div class="text-center">
+            <h6><span class="badge badge-success"><span id="remUsefukL">Remaining Useful Load</span></h6>
+          </div>
+          <br>
+          <br>
+          <div class="buttons">
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit" id="calc">Calculate</button>
+              <br>
+              <br>
+              <div class="terms-calc">
+                <p>Be aware, PILOT FLOW is not liable for any information provided! This is for entertainment purposes only! Recalculation is strongly advised! Review our: <a href="/legal">Terms and Conditions</a>!</p>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
         <div class="card mx-2">
           <div class="canvas">
             <canvas id="myChart"></canvas>
