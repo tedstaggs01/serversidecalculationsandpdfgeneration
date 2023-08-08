@@ -58,13 +58,29 @@ router.post('/result', (req, res) => {
         crew,
         pax,
         bag, 
-        zfm
+        zfm,
+        zfmlbs, 
+        fuel,
+        ramp, 
+        ramplbs, 
+        taxi, 
+        tom, 
+        tomlbs, 
+        trip, 
+        lm, 
+        lmlbs,
+        remUsefulL, 
+        remUsefulLlbs
     });
 });
 
 router.get('/result', (req, res) => {
     res.render('result');
 });
+
+router.get('/resultpdf', (req, res) => {
+    res.render('resultpdf')
+}); 
 
 router.get('/aerosport', (req, res) => {
     res.render('application/aerosport', {

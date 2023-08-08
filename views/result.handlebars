@@ -40,31 +40,33 @@
           <h5><span id="zfm">Zero Fuel Mass: {{zfm}} kg | {{zfmlbs}} lbs</span></h5>
           <hr>
           <div class="form-group">
-            <label for="fuel"><h6>Enter <span class="badge badge-soft-primary">Fuel</span> mass (kg):</h6></label>
-            <input type="number" class="form-control" id="fuel" placeholder="Fuel station" name="fuel">
+            <label for="fuel"><h6> <span class="badge badge-soft-primary">Fuel</span> mass (kg): {{fuel}}</h6></label>
           </div>
-          <h5><span id="ramp">Ramp Mass</span></h5>
+          <h5><span id="ramp">Ramp Mass: {{ramp}} kg | {{ramplbs}} lbs</span></h5>
           <hr>
           <div class="form-group">
-            <label for="taxi"><h6>Enter <span class="badge badge-soft-primary">Taxi</span> mass (kg):</h6></label>
-            <input type="number" class="form-control" id="taxi" placeholder="Fuel station" name="taxi">
+            <label for="taxi"><h6> <span class="badge badge-soft-primary">Taxi</span> mass (kg): {{taxi}}</h6></label>
           </div>
-          <h5><span id="tom">Take-off Mass</span></h5>
+          <h5><span id="tom">Take-off Mass: {{tom}} kg | {{tomlbs}} lbs</span></h5>
           <hr>
           <div class="form-group">
-            <label for="trip"><h6>Enter <span class="badge badge-soft-primary">Trip</span> mass (kg):</h6></label>
-            <input type="number" class="form-control" id="trip" placeholder="Fuel station" name="trip">
+            <label for="trip"><h6> <span class="badge badge-soft-primary">Trip</span> mass (kg): {{trip}}</h6></label>
           </div>
-          <h5><span id="lm">Landing Mass</span></h5>
+          <h5><span id="lm">Landing Mass: {{lm}} kg | {{lmlbs}} lbs</span></h5>
           <hr>
           <div class="text-center">
-            <h6><span class="badge badge-success"><span id="remUsefukL">Remaining Useful Load</span></h6>
+            <h6><span class="badge badge-success"><span id="remUsefukL">Remaining Useful Load: {{remUsefulL}} kg | {{remUsefulLlbs}} lbs</span></h6>
           </div>
           <br>
+          <div class="card mx-2">
+            <div class="canvas">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
           <br>
           <div class="buttons">
             <div class="text-center">
-                <button class="btn btn-primary" type="submit" id="calc">Calculate</button>
+                <button class="btn btn-primary" type="" id="calc">Generate PDF</button>
               <br>
               <br>
               <div class="terms-calc">
@@ -73,16 +75,6 @@
             </div>
           </div>
         </form>
-        <div class="card mx-2">
-          <div class="canvas">
-            <canvas id="myChart"></canvas>
-          </div>
-        </div>
-        <br>
-        <div class="text-center">
-          <button id="generatePDFButton">Generate PDF</button>
-        </div>
-        <br>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
