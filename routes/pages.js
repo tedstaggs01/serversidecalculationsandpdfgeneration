@@ -5,22 +5,17 @@ const { data } = require('./aerosport_data');
 const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs').promises;
+const Handlebars = require('handlebars');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
 let count = 0;
 
-router.get('/', (req, res) => {
-    res.render('index', {
-        count,
-        title: 'Pilot Flows'
-    });
-});
-
 router.post('/result', (req, res) => {
     const selectedAirplane = req.body.airplaneoption;
     const airplaneData = data[selectedAirplane];
     const airplanename = airplaneData.name; 
+    console.log(airplanename);
     const bem = airplaneData.bem;
     const bemcg = airplaneData.bemcg; 
     const bemmo = bem * bemcg; 
@@ -119,17 +114,27 @@ router.post('/result', (req, res) => {
 
 router.get('/generate-pdf', async (req, res) => {
     const pdfData = {
-        // Your gathered data
+        title: "Loadsheet"
     };
 
     try {
-        // Compile the Handlebars template
-        const templatePath = './templates/resultpdf.handlebars'; // Relative path to the template
+        const templateName = 'resultpdf'; 
+        const templatePath = path.join(__dirname, '../views', `${templateName}.handlebars`);
         const templateSource = await fs.readFile(templatePath, 'utf-8');
         const compiledTemplate = Handlebars.compile(templateSource);
         const content = compiledTemplate(pdfData);
 
-        // Rest of your PDF generation code ...
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        await page.setContent(content);
+
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true
+        });
+
+        await browser.close();
 
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=downloaded.pdf');
@@ -140,10 +145,11 @@ router.get('/generate-pdf', async (req, res) => {
     }
 });
 
-
 router.get('/resultpdf', (req, res) => {
-    res.render('./templates/resultpdf')
-}); 
+    res.render('resultpdf'); // Assuming resultpdf.handlebars is in the 'views' folder
+});
+
+
 
 router.get('/aerosport', (req, res) => {
     res.render('application/aerosport', {
