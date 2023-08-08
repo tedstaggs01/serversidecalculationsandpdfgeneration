@@ -7,25 +7,9 @@
       </div>
       <div class="mb-form">
         <form action="/result" method="post">
-          <h6>Select desired airplane profile:</h6>
-          <select class="form-select" name="airplaneoption">
-            <option value="lxaib">LX-AIB [P28A]</option>
-            <option value="lxaif">LX-AIF [P28A]</option>
-            <option value="lxaig">LX-AIG [P28A]</option>
-            <option value="lxaiw">LX-AIW [P28A]</option>
-            <option value="lxaic">LX-AIC [C172L]</option>
-            <option value="lxaid">LX-AID[C172N]</option>
-            <option value="lxaiz">LX-AIZ [C172N]</option>
-            <option value="lxaie">LX-AIE [C172S]</option>
-            <option value="lxaio">LX-AIO [C172S]</option>
-            <option value="lxaix">LX-AIX [C182Q]</option>
-            <option value="lxaim">LX-AIM [PA-44]</option>
-          </select>
-          <br>
           <br>
           <div class="text-center">
-            <h4>MASS AND BALANCE: <span id="test"></span></h4>
-            <span class="badge badge-soft-success">Read the <a href="/aerosportdoc">Documentation</a> before proceeding!</span>
+            <h3>MASS AND BALANCE: {{airplanename}}<span id="test"></span></h3>
           </div>
           <hr>
           <div class="form-group">
@@ -60,13 +44,13 @@
           <br>
           <div class="card mx-2">
             <div class="canvas">
-              <canvas id="myChart"><!--{{envelopechart}}--></canvas> 
+              <canvas id="myChart"></canvas> 
             </div>
           </div>
           <br>
           <div class="buttons">
             <div class="text-center">
-                <button class="btn btn-primary" type="" id="calc">Generate PDF</button>
+                <button class="btn btn-primary" type="" id="generatePdfButton">Generate PDF</button>
               <br>
               <br>
               <div class="terms-calc">
@@ -79,3 +63,73 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var envelope = {{{envelopeJSON}}};
+        var utility = {{{utilityJSON}}};
+        var mb = {{{mbJSON}}};
+        new Chart("myChart", {
+            type: "scatter",
+            data: {
+                datasets: [
+                    {
+                        label: "{{airplanename}}",
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(0, 0, 255)",
+                        data: envelope,
+                        showLine: true,
+                        fill: true,
+                        borderColor: "rgb(0, 150, 255)", 
+                        backgroundColor: "rgba(0, 0, 255, 0.2)" 
+                    },
+                    {
+                        label: "Utility",
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(255, 36, 0)",
+                        data: utility,
+                        showLine: true,
+                        fill: true,
+                        borderColor: "rgb(255, 36, 0, 0.5)", 
+                        backgroundColor: "rgba(255, 36, 0, 0.2)" 
+                    },
+                    {
+                        label: "Data",
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(0, 0, 255)",
+                        data: mb,
+                        showLine: true,
+                        borderColor: "rgb(0, 150, 255)", 
+                    }
+                ]
+            },
+            options: {
+                legend: { display: true },
+                scales: {
+                    xAxes: [{ ticks: { min: 80, max: 90 } }],
+                    yAxes: [{ ticks: { min: 1000, max: 2500 } }],
+                }
+            }
+        });
+    });
+    </script>
+    <script>
+           document.getElementById('generatePdfButton').addEventListener('click', async () => {
+               try {
+                   const response = await fetch('/generate-pdf');
+                   const pdfBlob = await response.blob();
+                   const url = URL.createObjectURL(pdfBlob);
+                   const a = document.createElement('a');
+                   a.href = url;
+                   a.download = 'downloaded.pdf';
+                   document.body.appendChild(a);
+                   a.click();
+                   document.body.removeChild(a);
+                   URL.revokeObjectURL(url);
+               } catch (error) {
+                   console.error("An error occurred:", error);
+               }
+           });
+    </script>
+   
+   
+   
