@@ -116,64 +116,21 @@ router.post('/result', (req, res) => {
     });
 });
 
+
 router.get('/generate-pdf', async (req, res) => {
     const pdfData = {
-        title: 'PDF Title',
-        content: 'PDF Content'
+        // Your gathered data
     };
 
     try {
         // Compile the Handlebars template
-        const content = await compile('pdfTemplate', pdfData);
-
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-
-        await page.setContent(content);
-
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            printBackground: true
-        });
-
-        await browser.close();
-
-        // Send PDF as response for download
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename=downloaded.pdf');
-        res.send(pdfBuffer);
-    } catch (error) {
-        console.error("An error occurred:", error);
-        res.status(500).send("Error generating PDF");
-    }
-});
-
-router.get('/generate-pdf', async (req, res) => {
-    try {
-        const pdfData = {
-            // Your gathered data
-        };
-
-        // Compile the Handlebars template
-        const templateName = 'pdfTemplate';
-        const filePath = path.join(__dirname, 'templates', `${templateName}.hbs`);
-        const templateSource = await fs.readFile(filePath, 'utf-8');
+        const templatePath = './templates/resultpdf.handlebars'; // Relative path to the template
+        const templateSource = await fs.readFile(templatePath, 'utf-8');
         const compiledTemplate = Handlebars.compile(templateSource);
         const content = compiledTemplate(pdfData);
 
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
+        // Rest of your PDF generation code ...
 
-        await page.setContent(content);
-
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            printBackground: true
-        });
-
-        await browser.close();
-
-        // Send PDF as response for download
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=downloaded.pdf');
         res.send(pdfBuffer);
@@ -183,12 +140,9 @@ router.get('/generate-pdf', async (req, res) => {
     }
 });
 
-/*router.get('/result', (req, res) => {
-    res.render('result');
-});*/
 
 router.get('/resultpdf', (req, res) => {
-    res.render('resultpdf')
+    res.render('./templates/resultpdf')
 }); 
 
 router.get('/aerosport', (req, res) => {
