@@ -5,6 +5,7 @@ const { data } = require('./aerosport_data');
 const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs').promises;
+const Handlebars = require('handlebars');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -119,7 +120,7 @@ router.post('/result', (req, res) => {
 
 router.get('/generate-pdf', async (req, res) => {
     const pdfData = {
-        // Your gathered data
+        title: "heehoeoeo"
     };
 
     try {
@@ -128,7 +129,7 @@ router.get('/generate-pdf', async (req, res) => {
         const templateSource = await fs.readFile(templatePath, 'utf-8');
         const compiledTemplate = Handlebars.compile(templateSource);
         const content = compiledTemplate(pdfData);
-
+        
         // Rest of your PDF generation code ...
 
         res.setHeader('Content-Type', 'application/pdf');
