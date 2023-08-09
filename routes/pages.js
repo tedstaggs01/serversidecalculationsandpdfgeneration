@@ -4,18 +4,15 @@ const bodyParser = require('body-parser');
 const { data } = require('./aerosport_data');
 const puppeteer = require('puppeteer');
 const path = require('path');
-const fs = require('fs').promises;
+const fs = require('fs-extra');
 const Handlebars = require('handlebars');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-
-let count = 0;
 
 router.post('/result', (req, res) => {
     const selectedAirplane = req.body.airplaneoption;
     const airplaneData = data[selectedAirplane];
     const airplanename = airplaneData.name; 
-    console.log(airplanename);
     const bem = airplaneData.bem;
     const bemcg = airplaneData.bemcg; 
     const bemmo = bem * bemcg; 
@@ -29,7 +26,7 @@ router.post('/result', (req, res) => {
     const bagcg = airplaneData.bagcg; 
     const bagmo = bag * bagcg; 
     const zfm = bem + crew + pax + bag;
-    const zfmlbs = zfm * 2.205; 
+    const zfmlbs = (zfm * 2.205).toFixed(2); 
     const zfmmo = bemmo + crewmo + paxmo + bagmo; 
     const zfmcg = zfmmo / zfm; 
     const zfmcgin = zfmcg * 39.37;
@@ -37,26 +34,26 @@ router.post('/result', (req, res) => {
     const fuelcg = airplaneData.fuelcg;
     const fuelmo = fuel * fuelcg; 
     const ramp = zfm + fuel; 
-    const ramplbs = ramp * 2.205; 
+    const ramplbs = (ramp * 2.205).toFixed(2); 
     const rampmo = zfmmo + fuelmo;
     const rampcg = rampmo / ramp;  
     const rampcgin = rampcg * 39.37;
     const taxi = parseFloat(req.body.taxi);
     const taximo = taxi * fuelcg;
     const tom = ramp - taxi; 
-    const tomlbs = tom * 2.205; 
+    const tomlbs = (tom * 2.205).toFixed(2); 
     const tommo = rampmo - taximo; 
     const tomcg = tommo / tom; 
     const tomcgin = parseFloat(tomcg * 39.37); 
     const trip = parseFloat(req.body.trip);
     const tripmo = trip * fuelcg; 
     const lm = tom - trip; 
-    const lmlbs = lm * 2.205; 
+    const lmlbs = (lm * 2.205).toFixed(2); 
     const lmmo = tommo - tripmo; 
     const lmcg = lmmo / lm; 
     const lmcgin = parseFloat(lmcg * 39.37); 
-    const remUsefulL = airplaneData.maxramp - ramp; 
-    const remUsefulLlbs = remUsefulL * 2.205;
+    const remUsefulL = (airplaneData.maxramp - ramp).toFixed(2); 
+    const remUsefulLlbs = (remUsefulL * 2.205).toFixed(2);
 
     const envelope = [
         {x:airplaneData.maxfwdcgL, y: airplaneData.minmL},
@@ -111,54 +108,9 @@ router.post('/result', (req, res) => {
     });
 });
 
-
-router.get('/generate-pdf', async (req, res) => {
-    const pdfData = {
-<<<<<<< HEAD
-        title: "Loadsheet"
-=======
-        title: "heehoeoeo"
->>>>>>> ee1d0012342cf2eb3b023678c2ca41919661c725
-    };
-
-    try {
-        const templateName = 'resultpdf'; 
-        const templatePath = path.join(__dirname, '../views', `${templateName}.handlebars`);
-        const templateSource = await fs.readFile(templatePath, 'utf-8');
-        const compiledTemplate = Handlebars.compile(templateSource);
-        const content = compiledTemplate(pdfData);
-<<<<<<< HEAD
-
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-
-        await page.setContent(content);
-
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            printBackground: true
-        });
-
-        await browser.close();
-=======
-        
-        // Rest of your PDF generation code ...
->>>>>>> ee1d0012342cf2eb3b023678c2ca41919661c725
-
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename=downloaded.pdf');
-        res.send(pdfBuffer);
-    } catch (error) {
-        console.error("An error occurred:", error);
-        res.status(500).send("Error generating PDF");
-    }
-});
-
 router.get('/resultpdf', (req, res) => {
     res.render('resultpdf'); // Assuming resultpdf.handlebars is in the 'views' folder
 });
-
-
 
 router.get('/aerosport', (req, res) => {
     res.render('application/aerosport', {

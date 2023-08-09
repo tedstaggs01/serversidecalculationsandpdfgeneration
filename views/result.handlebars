@@ -2,9 +2,6 @@
   <link rel="stylesheet" href="/css/form.css">
 </head>
     <div class="card mx-2" id="content">
-      <div class="alert alert-success" role="alert">
-          <strong>HEADS UP!</strong> This is a TESTING PHASE — Please report any difficulties or abnormals: <a href="tel:+352621232202" class="alert-link">+352 621 23 22 02</a>
-      </div>
       <div class="mb-form">
         <form action="/result" method="post">
           <br>
@@ -50,7 +47,7 @@
           <br>
           <div class="buttons">
             <div class="text-center">
-                <button class="btn btn-primary" type="" id="generatePdfButton">Generate PDF</button>
+                <button class="btn btn-primary" id="generatePdfButton">Generate PDF</button>
               <br>
               <br>
               <div class="terms-calc">
@@ -120,13 +117,11 @@
                 const url = URL.createObjectURL(pdfBlob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'downloaded.pdf';
+                a.download = 'loadsheet.pdf';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                
-                // Redirect to /aerosport
                 window.location.href = '/aerosport';
             } catch (error) {
                 console.error("An error occurred:", error);
