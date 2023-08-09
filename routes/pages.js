@@ -16,42 +16,53 @@ router.post('/result', (req, res) => {
     const bem = airplaneData.bem;
     const bemcg = airplaneData.bemcg; 
     const bemmo = bem * bemcg; 
+    const bemmop = bemmo.toFixed(3);
     const crew = parseFloat(req.body.crew);
     const crewcg = airplaneData.crewcg;
     const crewmo = crew * crewcg; 
+    const crewmop = crewmo.toFixed(3);
     const pax = parseFloat(req.body.pax);
     const paxcg = airplaneData.paxcg; 
     const paxmo = pax * paxcg; 
+    const paxmop = paxmo.toFixed(3);
     const bag = parseFloat(req.body.baggage);
     const bagcg = airplaneData.bagcg; 
     const bagmo = bag * bagcg; 
+    const bagmop = bagmo.toFixed(3);
     const zfm = bem + crew + pax + bag;
     const zfmlbs = (zfm * 2.205).toFixed(2); 
     const zfmmo = bemmo + crewmo + paxmo + bagmo; 
-    const zfmcg = zfmmo / zfm; 
-    const zfmcgin = zfmcg * 39.37;
+    const zfmmop = zfmmo.toFixed(3);
+    const zfmcg = (zfmmo / zfm).toFixed(2); 
+    const zfmcgin = (zfmcg * 39.37).toFixed(2);
     const fuel = parseFloat(req.body.fuel);
     const fuelcg = airplaneData.fuelcg;
     const fuelmo = fuel * fuelcg; 
+    const fuelmop = fuelmo.toFixed(3);
     const ramp = zfm + fuel; 
     const ramplbs = (ramp * 2.205).toFixed(2); 
     const rampmo = zfmmo + fuelmo;
-    const rampcg = rampmo / ramp;  
-    const rampcgin = rampcg * 39.37;
+    const rampmop = rampmo.toFixed(3);
+    const rampcg = (rampmo / ramp).toFixed(2);  
+    const rampcgin = (rampcg * 39.37).toFixed(2);
     const taxi = parseFloat(req.body.taxi);
     const taximo = taxi * fuelcg;
+    const taximop = taximo.toFixed(3);
     const tom = ramp - taxi; 
     const tomlbs = (tom * 2.205).toFixed(2); 
     const tommo = rampmo - taximo; 
-    const tomcg = tommo / tom; 
-    const tomcgin = parseFloat(tomcg * 39.37); 
+    const tommop = tommo.toFixed(3);
+    const tomcg = (tommo / tom).toFixed(2); 
+    const tomcgin = (tomcg * 39.37).toFixed(2); 
     const trip = parseFloat(req.body.trip);
     const tripmo = trip * fuelcg; 
+    const tripmop = tripmo.toFixed(3);
     const lm = tom - trip; 
     const lmlbs = (lm * 2.205).toFixed(2); 
     const lmmo = tommo - tripmo; 
-    const lmcg = lmmo / lm; 
-    const lmcgin = parseFloat(lmcg * 39.37); 
+    const lmmop = lmmo.toFixed(3);
+    const lmcg = (lmmo / lm).toFixed(2); 
+    const lmcgin = (lmcg * 39.37).toFixed(2); 
     const remUsefulL = (airplaneData.maxramp - ramp).toFixed(2); 
     const remUsefulLlbs = (remUsefulL * 2.205).toFixed(2);
 
@@ -87,43 +98,43 @@ router.post('/result', (req, res) => {
     req.app.locals.calculatedData = {
         bem,
         bemcg,
-        bemmo,
+        bemmop,
         crew,
         crewcg, 
-        crewmo, 
+        crewmop, 
         pax,
         paxcg, 
-        paxmo, 
+        paxmop, 
         bag,
         bagcg, 
-        bagmo,
+        bagmop,
         zfm,
         zfmlbs, 
         zfmcg, 
         zfmcgin,
-        zfmmo, 
+        zfmmop, 
         fuel, 
         fuelcg, 
-        fuelmo, 
+        fuelmop, 
         ramp, 
         ramplbs,
         rampcg, 
         rampcgin,
-        rampmo, 
+        rampmop, 
         taxi, 
-        taximo,
+        taximop,
         tom, 
         tomlbs, 
         tomcg, 
         tomcgin, 
-        tommo,
+        tommop,
         trip, 
-        tripmo, 
+        tripmop, 
         lm, 
         lmlbs, 
         lmcg, 
         lmcgin, 
-        lmmo
+        lmmop
     };
 
 
