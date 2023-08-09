@@ -114,7 +114,11 @@ router.post('/result', (req, res) => {
 
 router.get('/generate-pdf', async (req, res) => {
     const pdfData = {
+<<<<<<< HEAD
         title: "Loadsheet"
+=======
+        title: "heehoeoeo"
+>>>>>>> ee1d0012342cf2eb3b023678c2ca41919661c725
     };
 
     try {
@@ -123,6 +127,7 @@ router.get('/generate-pdf', async (req, res) => {
         const templateSource = await fs.readFile(templatePath, 'utf-8');
         const compiledTemplate = Handlebars.compile(templateSource);
         const content = compiledTemplate(pdfData);
+<<<<<<< HEAD
 
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -135,6 +140,10 @@ router.get('/generate-pdf', async (req, res) => {
         });
 
         await browser.close();
+=======
+        
+        // Rest of your PDF generation code ...
+>>>>>>> ee1d0012342cf2eb3b023678c2ca41919661c725
 
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=downloaded.pdf');

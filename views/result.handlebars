@@ -113,23 +113,23 @@
     });
     </script>
     <script>
-           document.getElementById('generatePdfButton').addEventListener('click', async () => {
-               try {
-                   const response = await fetch('/generate-pdf');
-                   const pdfBlob = await response.blob();
-                   const url = URL.createObjectURL(pdfBlob);
-                   const a = document.createElement('a');
-                   a.href = url;
-                   a.download = 'downloaded.pdf';
-                   document.body.appendChild(a);
-                   a.click();
-                   document.body.removeChild(a);
-                   URL.revokeObjectURL(url);
-               } catch (error) {
-                   console.error("An error occurred:", error);
-               }
-           });
+        document.getElementById('generatePdfButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/generate-pdf');
+                const pdfBlob = await response.blob();
+                const url = URL.createObjectURL(pdfBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'downloaded.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Redirect to /aerosport
+                window.location.href = '/aerosport';
+            } catch (error) {
+                console.error("An error occurred:", error);
+            }
+        });
     </script>
-   
-   
-   
