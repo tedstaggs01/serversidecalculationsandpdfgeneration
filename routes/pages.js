@@ -84,6 +84,49 @@ router.post('/result', (req, res) => {
     const utilityJSON = JSON.stringify(utility); 
     const mbJSON = JSON.stringify(mb); 
 
+    req.app.locals.calculatedData = {
+        bem,
+        bemcg,
+        bemmo,
+        crew,
+        crewcg, 
+        crewmo, 
+        pax,
+        paxcg, 
+        paxmo, 
+        bag,
+        bagcg, 
+        bagmo,
+        zfm,
+        zfmlbs, 
+        zfmcg, 
+        zfmcgin,
+        zfmmo, 
+        fuel, 
+        fuelcg, 
+        fuelmo, 
+        ramp, 
+        ramplbs,
+        rampcg, 
+        rampcgin,
+        rampmo, 
+        taxi, 
+        taximo,
+        tom, 
+        tomlbs, 
+        tomcg, 
+        tomcgin, 
+        tommo,
+        trip, 
+        tripmo, 
+        lm, 
+        lmlbs, 
+        lmcg, 
+        lmcgin, 
+        lmmo
+    };
+
+
     res.render('result', { 
         crew,
         pax,
@@ -114,15 +157,32 @@ router.get('/create-pdf', async (req, res) => {
         const page = await browser.newPage();
 
         // Read the Handlebars template
-        const templatePath = path.join(__dirname, '../templates', 'test.handlebars');
+        const templatePath = path.join(__dirname, '../templates', 'loadsheet.handlebars');
         const templateSource = await fs.readFile(templatePath, 'utf-8');
 
         // Compile the template with Handlebars
         const template = Handlebars.compile(templateSource);
-        const compiledHtml = template({
-            test: 'AWESOMEE',
-            pageContent: 'This is the content of my page.'
-        });
+
+        const renderedData = req.app.locals.calculatedData;
+
+        // Get the data from the previous rendering in /result route
+        /*const renderedData = {
+            bem: req.app.locals.bem,
+            bemcg: req.app.locals.bemcg, 
+            bemmo: req.app.locals.bemmo, 
+            crew: req.app.locals.crew,
+            crewcg: req.app.locals.crewcg,
+            crewmo: req.app.locals.crewmo, 
+            pax: req.app.locals.pax,
+            paxcg: req.app.locals.paxcg, 
+            paxmo: req.app.locals.paxmo, 
+            bag: req.app.locals.bag,
+            bagcg: req.app.locals.bagcg,
+            bagmo: req.app.locals.bagmo
+        };*/
+
+        // Compile the template with the rendered data
+        const compiledHtml = template(renderedData);
 
         // Set the compiled HTML as the page content
         await page.setContent(compiledHtml);
@@ -142,6 +202,7 @@ router.get('/create-pdf', async (req, res) => {
         res.status(500).send('An error occurred');
     }
 });
+
 
 
 router.get('/aerosport', (req, res) => {
