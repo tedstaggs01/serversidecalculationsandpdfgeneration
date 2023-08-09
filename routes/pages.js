@@ -108,9 +108,41 @@ router.post('/result', (req, res) => {
     });
 });
 
-router.get('/resultpdf', (req, res) => {
-    res.render('resultpdf'); // Assuming resultpdf.handlebars is in the 'views' folder
+router.get('/create-pdf', async (req, res) => {
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        // Read the Handlebars template
+        const templatePath = path.join(__dirname, '../templates', 'test.handlebars');
+        const templateSource = await fs.readFile(templatePath, 'utf-8');
+
+        // Compile the template with Handlebars
+        const template = Handlebars.compile(templateSource);
+        const compiledHtml = template({
+            test: 'AWESOMEE',
+            pageContent: 'This is the content of my page.'
+        });
+
+        // Set the compiled HTML as the page content
+        await page.setContent(compiledHtml);
+
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true
+        });
+
+        await browser.close();
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=loadsheet.pdf');
+        res.send(pdfBuffer);
+    } catch (error) {
+        console.error('An error occurred:', error);
+        res.status(500).send('An error occurred');
+    }
 });
+
 
 router.get('/aerosport', (req, res) => {
     res.render('application/aerosport', {

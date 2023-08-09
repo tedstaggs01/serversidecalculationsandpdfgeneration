@@ -17,7 +17,7 @@ app.get('/create-pdf', async (req, res) => {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        // Read the Handlebars template
+
         const templatePath = path.join(__dirname, 'templates', 'loadsheet.handlebars');
         const templateSource = await fs.readFile(templatePath, 'utf-8');
 

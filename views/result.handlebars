@@ -3,7 +3,6 @@
 </head>
     <div class="card mx-2" id="content">
       <div class="mb-form">
-        <form action="/result" method="post">
           <br>
           <div class="text-center">
             <h3>MASS AND BALANCE: {{airplanename}}<span id="test"></span></h3>
@@ -55,7 +54,6 @@
               </div>
             </div>
           </div>
-        </form>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -110,21 +108,25 @@
     });
     </script>
     <script>
-        document.getElementById('generatePdfButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/generate-pdf');
-                const pdfBlob = await response.blob();
-                const url = URL.createObjectURL(pdfBlob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'loadsheet.pdf';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                window.location.href = '/aerosport';
-            } catch (error) {
-                console.error("An error occurred:", error);
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            const createPdfButton = document.getElementById('generatePdfButton');
+        
+            createPdfButton.addEventListener('click', async function() {
+                try {
+                    const response = await fetch('/create-pdf', { method: 'GET' });
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'loadsheet.pdf';
+                        link.click();
+                    } else {
+                        console.error('Failed to create PDF');
+                    }
+                } catch (error) {
+                    console.error('An error occurred:', error);
+                }
+            });
         });
     </script>
